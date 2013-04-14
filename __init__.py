@@ -1,10 +1,17 @@
-from fabric.api import (local)
+from fabric.api import (cd, local)
 
 
-def get_remote_origin():
-    """Return a string of the remote origin URL"""
+def get_remote_origin(path, remote='origin'):
+    """Return a string of the remote origin URL
 
-    # Next step here is to strip out only the URL that we want
-    origin = local('git remote show origin')
+    Args:
+        path: Directory path to the local repository
+        remote: Name of the remote (default = 'origin')
 
-    return origin
+    Returns:
+        String containing the git URL of the origin
+    """
+
+    with cd(path):
+        origin = local('git config --get remote.%s.url' % remote)
+        return origin

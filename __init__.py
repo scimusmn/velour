@@ -1,4 +1,4 @@
-from fabric.api import (cd, local)
+from fabric.api import (cd, run)
 
 
 def get_remote_origin(path, remote='origin'):
@@ -13,5 +13,5 @@ def get_remote_origin(path, remote='origin'):
     """
 
     with cd(path):
-        origin = local('git config --get remote.%s.url' % remote)
+        origin = run('git config --get remote.%s.url' % remote)
         return origin

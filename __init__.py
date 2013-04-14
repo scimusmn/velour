@@ -1,7 +1,7 @@
 from fabric.api import (cd, run)
 
 
-def get_remote_origin(path, remote='origin'):
+def get_remote(path, remote='origin'):
     """Return a string of the remote origin URL
 
     Args:

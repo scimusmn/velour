@@ -18,7 +18,7 @@ def check_git(path):
             return True
 
 
-def get_remote(path, remote='origin'):
+def get_remote_url(path, remote='origin'):
     """Return a string of the remote origin URL
 
     Args:

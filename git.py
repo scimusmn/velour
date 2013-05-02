@@ -32,3 +32,22 @@ def get_remote_url(path, remote='origin'):
     with cd(path):
         origin = run('git config --get remote.%s.url' % remote)
         return origin
+
+
+def sync_local_from_remote(origin, branch):
+    """Pull all the latest details from a remote to a local repo"""
+    # Update the local git database
+    run("git fetch")
+
+    # Switch to the right branch
+    run("git checkout %s" % branch)
+
+    # Obliterate any local changes
+    run("git checkout .")
+
+    # Merge the latest code on this branch
+    run('git pull %s %s' % (origin, branch))
+
+
+def sync_submodules():
+    run("git submodule update --init --recursive")

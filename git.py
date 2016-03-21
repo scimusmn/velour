@@ -1,8 +1,9 @@
+"""Fabric Git utilities."""
 from fabric.api import (cd, run)
 
 
 def check_git(path):
-    """Check to see if a path is a Git repository
+    """Check to see if a path is a Git repository.
 
     Args:
         path: Directory path to check
@@ -19,7 +20,7 @@ def check_git(path):
 
 
 def get_remote_url(path, remote='origin'):
-    """Return a string of the remote origin URL
+    """Return a string of the remote origin URL.
 
     Args:
         path: Directory path to the local repository
@@ -28,14 +29,13 @@ def get_remote_url(path, remote='origin'):
     Returns:
         String containing the git URL of the origin
     """
-
     with cd(path):
         origin = run('git config --get remote.%s.url' % remote)
         return origin
 
 
 def sync_local_from_remote(origin, branch):
-    """Pull all the latest details from a remote to a local repo"""
+    """Pull all the latest details from a remote to a local repo."""
     # Update the local git database
     run("git fetch")
 
@@ -50,4 +50,5 @@ def sync_local_from_remote(origin, branch):
 
 
 def sync_submodules():
+    """Get the latest data from all the submodules in a repo."""
     run("git submodule update --init --recursive")

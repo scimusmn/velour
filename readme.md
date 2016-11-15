@@ -4,7 +4,7 @@
 This is alpha code and is actively being developed and might break your systems. Please test before using on your systems.
 
 # TODO
-Write a Fabirc recipe to get the git origin URL as a string
+Write a Fabric recipe to get the git origin URL as a string
 
 # Misc.
 Q: Velour?

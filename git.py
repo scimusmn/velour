@@ -1,5 +1,11 @@
 """Fabric Git utilities."""
-from fabric.api import (cd, run)
+from fabric.api import cd, run
+from fabric.context_managers import settings
+
+
+def clone(remote):
+    """Clone a git repo"""
+    run("git clone %s" % remote)
 
 
 def check_git(path):
@@ -12,11 +18,14 @@ def check_git(path):
         Boolean, True if it is a Git repo
     """
     with cd(path):
-        result = run('git status')
-        if result.return_code != 0:
-            return False
-        else:
-            return True
+        with settings(warn_only=True):
+            result = run('git status')
+            if result.return_code != 0:
+                print "This is false"
+                return False
+            else:
+                print "This is tru"
+                return True
 
 
 def get_remote_url(path, remote='origin'):
